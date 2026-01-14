@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // Ensures assets are linked relatively for index.php compatibility
+  base: '/', // Use absolute path for root deployment
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
