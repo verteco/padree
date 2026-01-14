@@ -1,7 +1,8 @@
 node_modules
 .git
 .DS_Store
-web/node_modules
-web/dist
+dist
+wordpress_theme
 design
 *.png
+Dockerfile
