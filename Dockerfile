@@ -1,5 +1,5 @@
-# Build Stage
-FROM node:20-alpine as builder
+# Build stage
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -7,24 +7,25 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
-# Copy source code (respects .dockerignore)
+# Copy source code
 COPY . .
 
-# Build the application
+# Build the app
 RUN npm run build
 
-# Production Stage
+# Production stage
 FROM nginx:alpine
 
-# Copy the build output to Nginx html directory
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copy custom Nginx configuration
+# Copy custom nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# EXPOSE port 80 (default for Nginx)
-EXPOSE 80
+# Copy built files from builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html
 
+# Expose port 8080 (DigitalOcean App Platform default)
+EXPOSE 8080
+
+# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
