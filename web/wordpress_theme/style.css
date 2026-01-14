@@ -1,0 +1,15 @@
+/*
+Theme Name: Padree Landing
+Theme URI: https://padree.com
+Author: Antigravity
+Description: Modern React-based landing page for Padree
+Version: 1.0
+*/
+
+/* Reset margins for the React root */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
